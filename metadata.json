@@ -1,0 +1,6 @@
+{
+  "name": "THERMOKINETIC — Generative Thermal & Kinetic Typography Studio",
+  "description": "Darkroom brutalist WebGL2 studio for applying thermal camera palettes, multi-mode motion blur, chromatic dispersion, and optical XOR typography over images and video.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
