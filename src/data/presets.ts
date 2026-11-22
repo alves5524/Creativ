@@ -166,12 +166,14 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'thermal-splash-xor',
     name: 'Optical Splash XOR',
+    category: 'Thermal',
     subtitle: 'High-contrast condensed type with optical inversion & Ironbow heat',
     params: DEFAULT_PARAMS,
   },
   {
     id: 'acid-stipple-waves',
     name: 'Acid Stipple Waves',
+    category: 'Thermal',
     subtitle: 'Undulating acid thermal bands with heavy stochastic stipple grain',
     params: {
       ...DEFAULT_PARAMS,
@@ -226,6 +228,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'caustic-void-sphere',
     name: 'Caustic Void Sphere',
+    category: 'Experimental',
     subtitle: 'Gossamer spherical filament caustics with rotational spin blur',
     params: {
       ...DEFAULT_PARAMS,
@@ -280,6 +283,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'xerox-thermal-paper',
     name: 'Xerox Thermal Paper',
+    category: 'Thermal',
     subtitle: 'Technical grid paper, CRT scanline streak & amber edge burn',
     params: {
       ...DEFAULT_PARAMS,
@@ -339,6 +343,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'riso-melt-matrix',
     name: 'Riso Melt Matrix',
+    category: 'Experimental',
     subtitle: 'Ordered Bayer dithering, vertical pixel melt & 4-pt starburst',
     params: {
       ...DEFAULT_PARAMS,
@@ -395,6 +400,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'singularity-cross-axis',
     name: 'Singularity Cross-Axis',
+    category: 'Kinetic',
     subtitle: 'Orthogonal X/Y streak flare on bright inverted exposure ground',
     params: {
       ...DEFAULT_PARAMS,
@@ -448,6 +454,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'perspective-ghost-3d',
     name: 'Perspective Ghost 3D',
+    category: 'Kinetic',
     subtitle: 'Red 3D horizon wireframes with rainbow spectral motion echo',
     params: {
       ...DEFAULT_PARAMS,
@@ -505,6 +512,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'aquarius-prism-dark',
     name: 'Prism Nocturne',
+    category: 'Experimental',
     subtitle: 'Gothic display type with spectral RGB dispersion & Inferno edges',
     params: {
       ...DEFAULT_PARAMS,
@@ -562,6 +570,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'slit-scan-ribbon',
     name: 'Slit-Scan Kinetic',
+    category: 'Kinetic',
     subtitle: 'Cobalt ribbon extrusion, stippled spheres & halftone grid',
     params: {
       ...DEFAULT_PARAMS,
@@ -622,6 +631,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'cylindrical-echo',
     name: 'Cylindrical Echo',
+    category: 'Kinetic',
     subtitle: 'Monochrome silver-halide perspective warp & rotational trails',
     params: {
       ...DEFAULT_PARAMS,
@@ -682,6 +692,7 @@ export const STUDIO_PRESETS: StudioPreset[] = [
   {
     id: 'flir-arctic-scan',
     name: 'FLIR Arctic Scan',
+    category: 'Thermal',
     subtitle: 'Full thermal contour isolines with neon cyan-crimson signature',
     params: {
       ...DEFAULT_PARAMS,

@@ -23,6 +23,7 @@ import {
 import {
   AspectRatioPreset,
   FontEntry,
+  PresetCategory,
   StudioParams,
   SubstrateKind,
   TypographyBlendMode,
@@ -75,6 +76,21 @@ export const LeftRail: React.FC<LeftRailProps> = ({
     msg: string;
   } | null>(null);
   const [fontLoading, setFontLoading] = useState(false);
+
+  const [openPresetCategories, setOpenPresetCategories] = useState<
+    Record<PresetCategory, boolean>
+  >({
+    Thermal: true,
+    Kinetic: false,
+    Experimental: false,
+  });
+
+  const togglePresetCategory = (category: PresetCategory) => {
+    setOpenPresetCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
+  };
 
   // Sync open section when user clicks TopBar nav links
   React.useEffect(() => {
@@ -357,34 +373,75 @@ export const LeftRail: React.FC<LeftRailProps> = ({
         </button>
 
         {openSection === 'presets' && (
-          <div className="px-4 pb-4 flex flex-col gap-1.5">
-            {STUDIO_PRESETS.map((preset) => {
-              const active = activePresetId === preset.id;
-              return (
-                <button
-                  key={preset.id}
-                  type="button"
-                  onClick={() => onSelectPreset(preset.id)}
-                  className={`text-left p-2.5 border transition-colors cursor-pointer ${
-                    active
-                      ? 'bg-[#181A1F] border-[#FF4D00]'
-                      : 'bg-[#09090B]/60 border-white/6 hover:border-white/16'
-                  }`}
-                >
-                  <div className="flex items-center justify-between text-xs font-semibold text-[#F4F4F5]">
-                    <span>{preset.name}</span>
-                    {active && (
-                      <span className="text-[10px] font-mono text-[#FF4D00]">
-                        ACTIVE
+          <div className="px-4 pb-4 flex flex-col divide-y divide-white/8">
+            {(['Thermal', 'Kinetic', 'Experimental'] as PresetCategory[]).map(
+              (category) => {
+                const items = STUDIO_PRESETS.filter(
+                  (p) => p.category === category
+                );
+                const isOpen = openPresetCategories[category];
+                const hasActive = items.some((p) => p.id === activePresetId);
+
+                return (
+                  <div key={category} className="py-2 first:pt-0 last:pb-0">
+                    <button
+                      type="button"
+                      onClick={() => togglePresetCategory(category)}
+                      className="w-full flex items-center justify-between py-1.5 text-left group cursor-pointer"
+                    >
+                      <span className="flex items-center gap-2 text-[11px] font-medium text-[#A1A1AA] group-hover:text-[#F4F4F5] transition-colors whitespace-nowrap shrink-0">
+                        <span>{category}</span>
+                        <span className="text-[#71717A] font-mono tabular-nums">
+                          · {items.length}
+                        </span>
+                        {hasActive && !isOpen && (
+                          <span className="text-[10px] font-mono text-[#FF4D00]">
+                            · ACTIVE
+                          </span>
+                        )}
                       </span>
+                      {isOpen ? (
+                        <ChevronDown className="w-3.5 h-3.5 text-[#71717A] group-hover:text-[#F4F4F5]" />
+                      ) : (
+                        <ChevronRight className="w-3.5 h-3.5 text-[#71717A] group-hover:text-[#F4F4F5]" />
+                      )}
+                    </button>
+
+                    {isOpen && (
+                      <div className="mt-1.5 flex flex-col gap-1.5">
+                        {items.map((preset) => {
+                          const active = activePresetId === preset.id;
+                          return (
+                            <button
+                              key={preset.id}
+                              type="button"
+                              onClick={() => onSelectPreset(preset.id)}
+                              className={`text-left p-2.5 border transition-colors cursor-pointer ${
+                                active
+                                  ? 'bg-[#181A1F] border-[#FF4D00]'
+                                  : 'bg-[#09090B]/60 border-white/6 hover:border-white/16'
+                              }`}
+                            >
+                              <div className="flex items-center justify-between gap-2 text-xs font-semibold text-[#F4F4F5]">
+                                <span className="truncate">{preset.name}</span>
+                                {active && (
+                                  <span className="text-[10px] font-mono text-[#FF4D00] shrink-0">
+                                    ACTIVE
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-[11px] text-[#A1A1AA] mt-0.5 leading-snug">
+                                {preset.subtitle}
+                              </p>
+                            </button>
+                          );
+                        })}
+                      </div>
                     )}
                   </div>
-                  <p className="text-[11px] text-[#A1A1AA] mt-0.5 leading-snug">
-                    {preset.subtitle}
-                  </p>
-                </button>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         )}
       </div>

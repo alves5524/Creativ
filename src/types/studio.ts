@@ -133,9 +133,12 @@ export interface StudioParams {
   };
 }
 
+export type PresetCategory = 'Thermal' | 'Kinetic' | 'Experimental';
+
 export interface StudioPreset {
   id: string;
   name: string;
+  category: PresetCategory;
   subtitle: string;
   params: StudioParams;
 }
